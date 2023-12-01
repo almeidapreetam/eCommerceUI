@@ -25,9 +25,38 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/bootstrap.css" ,
+              "src/assets/vendors/linericon/style.css" ,
+              "src/assets/css/font-awesome.min.css" ,
+              "src/assets/css/themify-icons.css" ,
+              "src/assets/css/flaticon.css" ,
+              "src/assets/vendors/owl-carousel/owl.carousel.min.css" ,
+              "src/assets/vendors/lightbox/simpleLightbox.css" ,
+              "src/assets/vendors/nice-select/css/nice-select.css" ,
+              "src/assets/vendors/animate-css/animate.css" ,
+              "node_modules/jquery-ui/dist/themes/start/jquery-ui.css",
+              "src/assets/css/style.css" ,
+              "src/assets/css/responsive.css" ,
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/stellar.js",
+              "src/assets/vendors/lightbox/simpleLightbox.min.js",
+              "src/assets/vendors/nice-select/js/jquery.nice-select.min.js",
+              "src/assets/vendors/isotope/imagesloaded.pkgd.min.js",
+              "src/assets/vendors/isotope/isotope-min.js",
+              "src/assets/vendors/owl-carousel/owl.carousel.min.js",
+              "src/assets/js/jquery.ajaxchimp.min.js",
+              "src/assets/vendors/counter-up/jquery.waypoints.min.js",
+              "src/assets/vendors/counter-up/jquery.counterup.js",
+              "src/assets/js/mail-script.js",
+              "src/assets/js/theme.js",
+              "node_modules/jquery-ui/dist/jquery-ui.js"
+            ]
+            
           },
           "configurations": {
             "production": {
