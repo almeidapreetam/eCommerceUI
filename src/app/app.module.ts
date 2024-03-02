@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { MenubarComponent } from './menubar/menubar.component';
+import { ImageSliderComponent } from './image-slider/image-slider.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MenubarComponent } from './menubar/menubar.component';
     ProductComponent,
     LoginComponent,
     RegisterComponent,
-    MenubarComponent
+    MenubarComponent,
+    ImageSliderComponent
   ],
   imports: [
     BrowserModule,

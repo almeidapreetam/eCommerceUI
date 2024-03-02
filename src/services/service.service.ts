@@ -21,4 +21,7 @@ export class ServiceService {
   getMenuBar(): Observable<any> {
     return this.http.get(this.apiUrl + 'Master/MenuBar/GetMenuBarData');
   }
+  getImageSlider(): Observable<any> {
+    return this.http.get(this.apiUrl + 'Master/ImageSlider/GetAll');
+  }
 }
