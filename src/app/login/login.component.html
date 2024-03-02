@@ -1,14 +1,21 @@
 <div class="contact_form form-outline mb-4">
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="login()" #loginForm="ngForm">
       <h2>Login</h2>
       <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username"  required>
+        <input type="text" id="username" name="username" required [(ngModel)]="loginModel.email" #username="ngModel">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+        </div>
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"  required>
+        <input type="password" id="password" name="password" required [(ngModel)]="loginModel.password" #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+        </div>
       </div>
-      <button type="submit" class="btn submit_btn">Login</button>
-    </form>
+      <button type="submit" class="btn submit_btn" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <div>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+  </div>
 </div>

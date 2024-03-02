@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Registration</h2>
+          <form (ngSubmit)="register()" #registrationForm="ngForm">
+            <div class="row mb-3">
+              <div class="col">
+                <label for="firstName" class="form-label">First Name:</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" required [(ngModel)]="userData.firstName" #firstName="ngModel">
+              </div>
+              <div class="col">
+                <label for="lastName" class="form-label">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" required [(ngModel)]="userData.lastName" #lastName="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="userData.emailAddress" #email="ngModel">
+              </div>
+              <div class="col">
+                <label for="mobile" class="form-label">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile" class="form-control" required [(ngModel)]="userData.mobileNo" #mobile="ngModel">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required [(ngModel)]="userData.password" #password="ngModel">
+              </div>
+              <div class="col">
+                <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required [(ngModel)]="userData.rePassword" #confirmPassword="ngModel">
+              </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
