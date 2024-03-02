@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
   constructor(private service : ServiceService,private router: Router ){};
 
   ngOnInit():void {
-    this.userData = this.getUserFromCookies();
-    if (!(this.userData && this.userData.emailAddress))
-    {
-      this.router.navigateByUrl('/login');
-    } 
+    // this.userData = this.getUserFromCookies();
+    // if (!(this.userData && this.userData.emailAddress))
+    // {
+    //   this.router.navigateByUrl('/login');
+    // } 
   }
 
   getUserFromCookies(): any {
