@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
+import { HomeCategoryComponent } from './home-category/home-category.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
     LoginComponent,
     RegisterComponent,
     MenubarComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    HomeCategoryComponent
   ],
   imports: [
     BrowserModule,
