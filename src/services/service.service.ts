@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterUser } from 'src/models/RegisterUser';
 import { LoginUser } from 'src/models/LoginUser';
+import { ProductFilter } from 'src/models/ProductFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,8 @@ export class ServiceService {
   }
   getLeftSidePanelData(): Observable<any> {
     return this.http.get(this.apiUrl + 'Home/LeftPanelData');
+  }
+  filterProducts(model : ProductFilter): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'Products', model);
   }
 }

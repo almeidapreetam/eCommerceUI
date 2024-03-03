@@ -14,8 +14,6 @@ export class LeftSidebarAreaComponent implements OnInit {
   constructor(private service: ServiceService,private router: Router) {}
   ngOnInit() {
     this.getLeftpanelData();
-    console.log("category", this.category);
-    console.log("brand", this.brand);
   }
   async getLeftpanelData() {
     try {

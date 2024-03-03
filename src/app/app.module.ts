@@ -16,6 +16,7 @@ import { MenubarComponent } from './menubar/menubar.component';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { HomeCategoryComponent } from './home-category/home-category.component';
 import { LeftSidebarAreaComponent } from './left-sidebar-area/left-sidebar-area.component';
+import { CategoryProductComponent } from './category-product/category-product.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LeftSidebarAreaComponent } from './left-sidebar-area/left-sidebar-area.
     MenubarComponent,
     ImageSliderComponent,
     HomeCategoryComponent,
-    LeftSidebarAreaComponent
+    LeftSidebarAreaComponent,
+    CategoryProductComponent
   ],
   imports: [
     BrowserModule,
