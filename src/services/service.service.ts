@@ -24,4 +24,8 @@ export class ServiceService {
   getImageSlider(): Observable<any> {
     return this.http.get(this.apiUrl + 'Master/ImageSlider/GetAll');
   }
+
+  fetchHomeCategory():Observable<any> {
+    return this.http.get(this.apiUrl+'Home/Category'); 
+  }
 }
