@@ -24,4 +24,7 @@ export class ServiceService {
   getImageSlider(): Observable<any> {
     return this.http.get(this.apiUrl + 'Master/ImageSlider/GetAll');
   }
+  getLeftSidePanelData(): Observable<any> {
+    return this.http.get(this.apiUrl + 'Home/LeftPanelData');
+  }
 }

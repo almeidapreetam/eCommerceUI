@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { HomeCategoryComponent } from './home-category/home-category.component';
+import { LeftSidebarAreaComponent } from './left-sidebar-area/left-sidebar-area.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HomeCategoryComponent } from './home-category/home-category.component';
     RegisterComponent,
     MenubarComponent,
     ImageSliderComponent,
-    HomeCategoryComponent
+    HomeCategoryComponent,
+    LeftSidebarAreaComponent
   ],
   imports: [
     BrowserModule,
