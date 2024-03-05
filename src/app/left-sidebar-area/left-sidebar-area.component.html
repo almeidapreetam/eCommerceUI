@@ -6,8 +6,11 @@
         <div class="widgets_inner" *ngIf="category && category.length > 0">
             <ul class="list">
                 <li *ngFor="let item of category">
-                    <a href="#">{{ item.name }}</a>
-                </li>    
+                    <label>
+                        <input type="checkbox" [(ngModel)]="item.checked" (change)="onCategoryChanged()" >
+                        {{ item.name }}
+                    </label>
+                </li>
             </ul>
         </div>
         <div *ngIf="!category || category.length === 0">
@@ -22,7 +25,10 @@
         <div class="widgets_inner" *ngIf="brand && brand.length > 0">
             <ul class="list">
                 <li *ngFor="let item of brand">
-                    <a href="#">{{ item.name }}</a>
+                    <label>
+                        <input type="checkbox" [(ngModel)]="item.checked"  (change)="onBrandChanged()" >
+                        {{ item.name }}
+                    </label>
                 </li>    
             </ul>
         </div>

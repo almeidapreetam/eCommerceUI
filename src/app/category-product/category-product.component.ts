@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Product } from 'src/models/Product';
 import { ProductFilter } from 'src/models/ProductFilter';
+import { DataService } from 'src/services/dataService';
 import { ServiceService } from 'src/services/service.service';
 
 @Component({
@@ -12,17 +14,21 @@ export class CategoryProductComponent implements OnInit {
 
   productFilter : ProductFilter = new ProductFilter();
   product: Product[] = [];
+  data: string = "";
+  
 
-  constructor(private service: ServiceService) {}
-  ngOnInit() {
-    
-    this.productFilter.ProductTypeId = 1;
-    this.productFilter.SubProductTypeId = 1;
-    this.getProducts();
+  constructor(private service: ServiceService, private route: ActivatedRoute, private dataService: DataService) {}
+
+
+  ngOnInit(): void {
+    this.dataService.productFilter$.subscribe(data => {
+      this.getProducts(data);
+    });
   }
 
-  getProducts() {
-    this.service.filterProducts(this.productFilter)
+
+  getProducts(productFilter : ProductFilter ) {
+    this.service.filterProducts(productFilter)
     .subscribe(
       response => {
         this.product = response;

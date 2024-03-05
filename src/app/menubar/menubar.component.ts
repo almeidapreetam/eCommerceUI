@@ -2,23 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/services/service.service';
 import { MenuBar } from 'src/models/MenuBar'
+import { DataService } from 'src/services/dataService';
+import { ProductFilter } from 'src/models/ProductFilter';
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css']
 })
 export class MenubarComponent implements OnInit{
-
-  constructor(private service: ServiceService,private router: Router) {}
-
+  categoryId: number | undefined;
+  constructor(private service: ServiceService,private router: Router, private dataService: DataService) {}
+  productFilter = new ProductFilter(); 
   menubar : any
+  txtSearch : string = '';
   ngOnInit():void {
     this.getManuBarData();
+    this.dataService.productFilter$.subscribe(data => {
+      this.productFilter = data;
+    });
   }
 
   async getManuBarData() {
     this.menubar = await this.service.getMenuBar().toPromise();
     console.log(this.menubar)
   }
+  goToCategory(categoryId: number) {
+    this.productFilter.CategoryId = [categoryId];
+    this.dataService.setProductFilter(this.productFilter);
+    this.router.navigate(['/categoryProduct']);
+  }
+  searchClick(searchTerm: string) {
+    this.productFilter.SearchText = searchTerm;
+    this.dataService.setProductFilter(this.productFilter);
+}
 }
 

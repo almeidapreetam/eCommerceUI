@@ -57,36 +57,36 @@
                                     <!-- Dropdown menu -->
                                     <div class="dropdown-menu custom-menu-ht" aria-labelledby="navbarDropdown">
                                         <ul>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Boys</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Top Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Bottom Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Night Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Sports Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Winter Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Boys</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(2)">Top Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(3)">Bottom Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(4)">Night Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(5)">Sports Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(6)">Winter Wear</a></li>
                                         </ul>
                                         <ul>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Girls</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Top Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Bottom Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Night Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Sports Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Winter Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(7)">Girls</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(8)">Top Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(9)">Bottom Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(10)">Night Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(11)">Sports Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(12)">Winter Wear</a></li>
                                         </ul>
                                         <ul>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Men&lsquo;s Garments</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Top Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Bottom Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Night Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Sports Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Winter Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(13)">Men&lsquo;s Garments</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(14)">Top Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(15)">Bottom Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(16)">Night Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(17)">Sports Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(18)">Winter Wear</a></li>
                                         </ul>
                                         <ul>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Women&lsquo;s Ethenic</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Top Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Bottom Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Night Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Sports Wear</a></li>
-                                            <li class="mega-nav"><a class="dropdown-item" href="#">Winter Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Women&lsquo;s Ethenic</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Top Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Bottom Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Night Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Sports Wear</a></li>
+                                            <li class="mega-nav"><a class="dropdown-item" (click)="goToCategory(1)">Winter Wear</a></li>
                                         </ul>
                                     </div>
                                     <!-- Dropdown menu -->
@@ -130,11 +130,11 @@
             <div class="row w-100 mr-0">
                             <!-- Search bar -->
               <div class="col-lg-7 pr-0">
-                                <div class="input-group-icon" style="margin-top:20px">
-                                    <form class="form-inline my-2 my-lg-0">
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
+                <div class="input-group-icon" style="margin-top:20px">
+                    <div class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" [(ngModel)]="txtSearch" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchClick(txtSearch)"><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
               </div>
               <div class="col-lg-5 pr-0">
