@@ -17,6 +17,7 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { HomeCategoryComponent } from './home-category/home-category.component';
 import { LeftSidebarAreaComponent } from './left-sidebar-area/left-sidebar-area.component';
 import { CategoryProductComponent } from './category-product/category-product.component';
+import { TrendingItemComponent } from './trending-item/trending-item.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CategoryProductComponent } from './category-product/category-product.co
     ImageSliderComponent,
     HomeCategoryComponent,
     LeftSidebarAreaComponent,
-    CategoryProductComponent
+    CategoryProductComponent,
+    TrendingItemComponent
   ],
   imports: [
     BrowserModule,

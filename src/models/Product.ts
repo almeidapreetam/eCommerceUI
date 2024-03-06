@@ -16,6 +16,7 @@ export class Product
   categoryId: number| undefined;
   availability: boolean| undefined;
   description: string| undefined;
+  shortDescription: string| undefined;
   specification: string| undefined;
   brand: any; // You might want to replace 'any' with an appropriate type if available
   productType: any; // You might want to replace 'any' with an appropriate type if available

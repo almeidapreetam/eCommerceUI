@@ -10,7 +10,7 @@ import { ServiceService } from 'src/services/service.service';
   
 })
 export class HomeCategoryComponent implements OnInit {
-  HomeCategory : any[] = [];
+  homeCategory : any[] = [];
   constructor(private service: ServiceService){}
 
   ngOnInit(): void {
@@ -18,7 +18,10 @@ export class HomeCategoryComponent implements OnInit {
   }
 
    async fetchHomeCategory(){
-    this.HomeCategory = await  this.service.fetchHomeCategory().toPromise();
-    console.log(this.HomeCategory);
+    this.homeCategory = await  this.service.fetchHomeCategory().toPromise();
+    console.log("HomeCategory",this.homeCategory);
+  }
+  redirectToUrl(url : string) {
+    alert()
   }
 }

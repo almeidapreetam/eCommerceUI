@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/models/Product';
 import { ProductFilter } from 'src/models/ProductFilter';
 import { DataService } from 'src/services/dataService';
@@ -17,7 +17,7 @@ export class CategoryProductComponent implements OnInit {
   data: string = "";
   
 
-  constructor(private service: ServiceService, private route: ActivatedRoute, private dataService: DataService) {}
+  constructor(private service: ServiceService, private route: ActivatedRoute, private dataService: DataService, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -39,5 +39,10 @@ export class CategoryProductComponent implements OnInit {
       }
     );
 
+  }
+  gotoProduct(id? : number) {
+    if(id){
+      this.router.navigate(['/product', id]);
+    }  
   }
 }
