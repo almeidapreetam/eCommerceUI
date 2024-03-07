@@ -34,6 +34,7 @@ export class MenubarComponent implements OnInit{
   searchClick(searchTerm: string) {
     this.productFilter.SearchText = searchTerm;
     this.dataService.setProductFilter(this.productFilter);
+    this.router.navigate(['/categoryProduct']);
 }
 }
 

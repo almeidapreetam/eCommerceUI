@@ -7,6 +7,7 @@ export class Product
   brandId: number| undefined;
   price: number| undefined;
   discount: number| undefined;
+  productImage: string|undefined;
   color: string | null| undefined;
   colorId: number| undefined;
   gender: string | null| undefined;

@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div  *ngFor="let category of homeCategory"  class="col-lg-2 col-md-4 col">
-            <div class="card" style="width: 100%;" (click)="redirectToUrl(category.redirectToUrl)">
+            <div class="card" style="width: 100%;" (click)="goToCategory(1)">
                 <img class="card-img-top" [src]="category.imageUrl" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{category.name}}</h5>

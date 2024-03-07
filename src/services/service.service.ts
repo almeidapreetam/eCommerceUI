@@ -35,6 +35,9 @@ export class ServiceService {
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}Products?id=${id}`);
   }
+  getTrendingItems(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}Home/TrendingItems`);
+  }
   filterProducts(model : ProductFilter): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'Products', model);
   }
