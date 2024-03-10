@@ -13,8 +13,11 @@ import { ServiceService } from 'src/services/service.service';
 export class CategoryProductComponent implements OnInit {
 
   productFilter : ProductFilter = new ProductFilter();
+  category: any;
+  brand: any;
   product: Product[] = [];
   data: string = "";
+  filterGroup : any;
   
 
   constructor(private service: ServiceService, private route: ActivatedRoute, private dataService: DataService, private router: Router) {}
@@ -23,6 +26,13 @@ export class CategoryProductComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.productFilter$.subscribe(data => {
       this.getProducts(data);
+      this.filterGroup = data;
+    });
+    this.dataService.category$.subscribe(data => {
+      this.category = data;
+    });
+    this.dataService.brand$.subscribe(data => {
+      this.brand = data;
     });
   }
 
@@ -44,5 +54,33 @@ export class CategoryProductComponent implements OnInit {
     if(id){
       this.router.navigate(['/product', id]);
     }  
+  }
+  removeCategoryFilter(id: number) {
+    this.dataService.productFilter$.subscribe(data => {
+      this.filterGroup = data;
+    });
+    this.productFilter.CategoryId = this.filterGroup.CategoryId
+
+    if (this.productFilter && this.productFilter.CategoryId) {
+      this.productFilter.CategoryId = [...this.productFilter.CategoryId.filter(s => s !== id)];
+      this.dataService.setProductFilter(this.productFilter);
+    } else {
+      console.error("Category not initialized or is empty.");
+    }
+  }
+  
+  removeBrandFilter(id : number) 
+  {
+    this.dataService.productFilter$.subscribe(data => {
+      this.filterGroup = data;
+    });
+    this.productFilter.Brand = this.filterGroup.Brand
+
+    if (this.productFilter && this.productFilter.Brand) {
+      this.productFilter.Brand = [...this.productFilter.Brand.filter(s => s !== id)];
+      this.dataService.setProductFilter(this.productFilter);
+    } else {
+      console.error("Brand not initialized or is empty.");
+    }
   }
 }
