@@ -15,10 +15,18 @@ export class MenubarComponent implements OnInit{
   productFilter = new ProductFilter(); 
   menubar : any
   txtSearch : string = '';
+  cartCount : number = 0 ;
+  isUserLogger : Boolean | undefined; 
   ngOnInit():void {
     this.getManuBarData();
     this.dataService.productFilter$.subscribe(data => {
       this.productFilter = data;
+    });
+    this.isUserLogger = this.service.checkIfUserloggedIn();
+    this.dataService.tempCart$.subscribe(data => {
+      if(data) {
+        this.cartCount = data.length;
+      }
     });
   }
 
@@ -35,12 +43,14 @@ export class MenubarComponent implements OnInit{
     this.productFilter.SearchText = searchTerm;
     this.dataService.setProductFilter(this.productFilter);
     this.router.navigate(['/categoryProduct']);
-}
-    searchChange(searchTerm: string) {
-      if(!searchTerm) {
-        this.searchClick(searchTerm);
-      }  
-    
+  }
+  searchChange(searchTerm: string) {
+    if (!searchTerm) {
+      this.searchClick(searchTerm);
     }
+  }
+  goToCart() {
+    this.router.navigate(['/cart']);
+  }
 }
 

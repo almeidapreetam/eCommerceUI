@@ -1,4 +1,4 @@
-
+{{cart | json}}
     
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
@@ -34,145 +34,85 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="../assets/img/product/single-product/cart-1.jpg"
-                                                 alt="" />
+                            <!-- product -->
+                            <ng-container *ngIf="!isUserLoggedIn">
+                                <tr *ngFor="let cart of tempCart">
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img width="80" [src]="cart.product?.productImage" alt="" />
+                                            </div>
+                                            <div class="media-body">
+                                                <p>{{cart.product?.name}}</p>
+                                            </div>
                                         </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                    </td>
+                                    <td>
+                                        <h5>&#8377;{{cart.product?.price}}</h5>
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" [(ngModel)]="cart.quantity">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text"
-                                               name="qty"
-                                               id="sst"
-                                               maxlength="12"
-                                               value="1"
-                                               title="Quantity:"
-                                               class="input-text qty" />
-                                        <button 
-                                                class="increase items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-up"></i>
-                                        </button>
-                                        <button 
-                                                class="reduced items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="../assets/img/product/single-product/cart-1.jpg"
-                                                 alt="" />
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text"
-                                               name="qty"
-                                               id="sst"
-                                               maxlength="12"
-                                               value="1"
-                                               title="Quantity:"
-                                               class="input-text qty" />
-                                        <button 
-                                                class="increase items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-up"></i>
-                                        </button>
-                                        <button 
-                                                class="reduced items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="../assets/img/product/single-product/cart-1.jpg"
-                                                 alt="" />
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text"
-                                               name="qty"
-                                               id="sst"
-                                               maxlength="12"
-                                               value="1"
-                                               title="Quantity:"
-                                               class="input-text qty" />
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                                class="increase items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-up"></i>
-                                        </button>
-                                        <!--button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                                class="reduced items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-down"></i>
-                                        </button-->
-                                        <button onclick=""
-                                                class="reduced items-count"
-                                                type="button">
-                                            <i class="lnr lnr-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr class="bottom_button">
-                                <td>
-                                    <a class="gray_btn" href="#">Update Cart</a>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="cupon_text">
-                                        <input type="text" placeholder="Coupon Code" />
-                                        <a class="main_btn" href="#">Apply</a>
-                                        <a class="gray_btn" href="#">Close Coupon</a>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <h5>{{ (cart.product && cart.product.price && cart.quantity ? cart.product.price * cart.quantity : 0) }}</h5>
+
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="isUserLoggedIn">
+                                <ng-container *ngIf="cart">
+                                    <tr *ngFor="let cart of cart.cartDetails">
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img width="80" [src]="cart.productImage" alt="" />
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>{{cart.productName}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5>&#8377;{{cart.finalPrice}}</h5>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5>{{ cart.price }}</h5>
+
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                            <!-- product -->
+
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -180,48 +120,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>$2160.00</h5>
-                                </td>
-                            </tr>
-                            <tr class="shipping_area">
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <h5>Shipping</h5>
-                                </td>
-                                <td>
-                                    <div class="shipping_box">
-                                        <ul class="list">
-                                            <li>
-                                                <a href="#">Flat Rate: $5.00</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Free Shipping</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Flat Rate: $10.00</a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="#">Local Delivery: $2.00</a>
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            Calculate Shipping
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                        </h6>
-                                        <select class="shipping_select">
-                                            <option value="1">Bangladesh</option>
-                                            <option value="2">India</option>
-                                            <option value="4">Pakistan</option>
-                                        </select>
-                                        <select class="shipping_select">
-                                            <option value="1">Select a State</option>
-                                            <option value="2">Select a State</option>
-                                            <option value="4">Select a State</option>
-                                        </select>
-                                        <input type="text" placeholder="Postcode/Zipcode" />
-                                        <a class="gray_btn" href="#">Update Details</a>
-                                    </div>
+                                    <h5>{{ calculateSubtotal() }}</h5>
                                 </td>
                             </tr>
                             <tr class="out_button_area">
@@ -231,7 +130,7 @@
                                 <td>
                                     <div class="checkout_btn_inner">
                                         <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="main_btn" href="cart.component.html">Proceed to checkout</a>
+                                        <a class="main_btn" (click)="proceedCheckout()">Proceed to checkout</a>
                                     </div>
                                 </td>
                             </tr>

@@ -34,6 +34,8 @@ export class CategoryProductComponent implements OnInit {
     this.dataService.brand$.subscribe(data => {
       this.brand = data;
     });
+
+    console.log("userer", this.service.getUserId())
   }
 
 
@@ -81,6 +83,16 @@ export class CategoryProductComponent implements OnInit {
       this.dataService.setProductFilter(this.productFilter);
     } else {
       console.error("Brand not initialized or is empty.");
+    }
+  }
+   async addToCart(prod : Product) {
+    if (this.service.checkIfUserloggedIn())
+    {
+      var data  = await this.service.addToCart( prod , 1).toPromise();
+      this.dataService.setCart(data);
+    }
+    else {
+      this.dataService.setTempCart({product: prod ,quantity: 1})    
     }
   }
 }

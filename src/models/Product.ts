@@ -5,8 +5,8 @@ export class Product
   productId: number | undefined;
   name: string| undefined;
   brandId: number| undefined;
-  price: number| undefined;
-  discount: number| undefined;
+  price: number = 0;
+  discount: number= 0;
   productImage: string|undefined;
   color: string | null| undefined;
   colorId: number| undefined;

@@ -1,4 +1,6 @@
- <header class="header_area">
+
+
+<header class="header_area">
         <div class="top_menu">
             <div class="container">
                 <div class="row">
@@ -7,6 +9,7 @@
                             <p><i class="fa fa-phone" aria-hidden="true"></i> +9987322395</p>
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i> SG FASHION</p>
                             <p><i class="fa fa-clock-o" aria-hidden="true"></i> Daily 10.00 - 22:00</p>
+                            <p>{{isUserLogger}}</p>
                         </div>
                     </div>
                     <div class="col-lg-5">
@@ -175,9 +178,9 @@
                             </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="icons">
+                        <a (click)="goToCart()" class="icons">
                             <i class="ti-shopping-cart"></i>
-                            
+                            <span class='badge badge-warning' id='lblCartCount'>{{cartCount}} </span>
                         </a>
                     </li>
 
