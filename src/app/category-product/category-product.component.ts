@@ -86,13 +86,6 @@ export class CategoryProductComponent implements OnInit {
     }
   }
    async addToCart(prod : Product) {
-    if (this.service.checkIfUserloggedIn())
-    {
-      var data  = await this.service.addToCart( prod , 1).toPromise();
-      this.dataService.setCart(data);
-    }
-    else {
-      this.dataService.setTempCart({product: prod ,quantity: 1})    
-    }
-  }
+    this.dataService.addToCart(prod, 1)
+   }
 }
