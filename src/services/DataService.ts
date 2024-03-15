@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Product } from 'src/models/Product';
 import { ProductFilter } from 'src/models/ProductFilter';
 import { TempCart } from 'src/models/TempCart';
+import { ServiceService } from './service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  constructor(private service: ServiceService) {}
+
     private productFilter = new BehaviorSubject<ProductFilter>(new ProductFilter);
     private category = new BehaviorSubject<any>(null);
     private brand = new BehaviorSubject<any>(null);
@@ -35,5 +40,24 @@ export class DataService {
     }
     setCart(model: any) {
       this.Cart.next(model);
+    }
+    async addToCart(product : Product, quantity : number) {
+    if (this.service.checkIfUserloggedIn())
+    {
+      var data  = await this.service.addToCart( product , quantity).toPromise();
+      this.setCart(data);
+    }
+    else {
+      this.setTempCart({product ,quantity: quantity})    
+    }
+
+      const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+      for (const cookie of cookies) {
+          const [name, value] = cookie.split('=');
+          if (name === 'userData') {
+              return JSON.parse(decodeURIComponent(value));
+          }
+      }
+      return null; // Return null if userData cookie is not found
     }
 }
