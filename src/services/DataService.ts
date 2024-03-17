@@ -4,13 +4,14 @@ import { Product } from 'src/models/Product';
 import { ProductFilter } from 'src/models/ProductFilter';
 import { TempCart } from 'src/models/TempCart';
 import { ServiceService } from './service.service';
+import { ObjectService } from './ObjectService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private service: ServiceService) {}
+  constructor(private service: ServiceService, private objectService: ObjectService) {}
 
     private productFilter = new BehaviorSubject<ProductFilter>(new ProductFilter);
     private category = new BehaviorSubject<any>(null);
@@ -38,26 +39,35 @@ export class DataService {
       const updatedCartValue = [...currentCartValue, model];
       this.tempCart.next(updatedCartValue);
     }
+    setTempCartSession(model: TempCart) {
+      const currentCartValue = this.tempCart.getValue();
+      const mod = { key: 'value' };
+      const updatedCartValue = [...currentCartValue, model];
+      
+      this.objectService.setObject(updatedCartValue);
+    }
+    getTempCartSession() {
+      const storedObject = this.objectService.getObject();
+    }
     setCart(model: any) {
       this.Cart.next(model);
     }
-    async addToCart(product : Product, quantity : number) {
-    if (this.service.checkIfUserloggedIn())
-    {
-      var data  = await this.service.addToCart( product , quantity).toPromise();
-      this.setCart(data);
-    }
-    else {
-      this.setTempCart({product ,quantity: quantity})    
-    }
-
-      const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-      for (const cookie of cookies) {
-          const [name, value] = cookie.split('=');
-          if (name === 'userData') {
-              return JSON.parse(decodeURIComponent(value));
+    async addToCart(product : Product, quantity : number) 
+        {
+          if (this.service.checkIfUserloggedIn())
+          {
+            var data  = await this.service.addToCart( product , quantity).toPromise();
+            this.setCart(data);
           }
-      }
-      return null; // Return null if userData cookie is not found
-    }
+          this.setTempCartSession({product ,quantity: quantity})    
+            const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+            for (const cookie of cookies) {
+                const [name, value] = cookie.split('=');
+                if (name === 'userData') {
+                    return JSON.parse(decodeURIComponent(value));
+                }
+            }
+            const storedObject = this.objectService.getObject();
+            return null; // Return null if userData cookie is not found
+        }
 }
