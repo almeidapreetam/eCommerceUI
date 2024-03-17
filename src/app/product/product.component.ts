@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/models/Product';
 import { ServiceService } from 'src/services/service.service';
+import { DataService } from 'src/services/dataService';
+
 
 @Component({
   selector: 'app-product',
@@ -10,9 +12,10 @@ import { ServiceService } from 'src/services/service.service';
 })
 export class ProductComponent implements OnInit {
   
-  constructor(private route: ActivatedRoute, public service : ServiceService) { }
+  constructor(private route: ActivatedRoute, public service : ServiceService,private dataService: DataService) { }
   id: number | undefined;
   product :Product | undefined; 
+  Quantity : number = 1;
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = +params['id']; 
@@ -25,5 +28,13 @@ export class ProductComponent implements OnInit {
  async getProduct(id: number) {
   this.product = await this.service.getProduct(id).toPromise();
   console.log(this.product)
+ }
+
+
+ async addToCart(prod : Product | undefined , quantity : number) {
+  if(prod) {
+    alert(quantity);
+    await this.dataService.addToCart(prod, quantity)
+  }
  }
 }
