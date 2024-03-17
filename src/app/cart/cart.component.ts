@@ -13,24 +13,13 @@ export class CartComponent implements OnInit {
 
   tempCart : TempCart[] = [];
   cart:any = null;
+  checkOutCart:any = null;
   isUserLoggedIn : boolean = false;
   constructor(private service: ServiceService,private router: Router, private dataService: DataService) {}
 
   ngOnInit():void {
-
     this.isUserLoggedIn = this.service.checkIfUserloggedIn();
-
-    this.dataService.tempCart$.subscribe(data => {
-      if(data && data.length > 0) {
-        this.tempCart = data;
-      }
-    });
-
-    this.dataService.Cart$.subscribe(data => {
-      console.log("asdasdasdasdasdasdad", data)
-      this.cart = data;
-    });
-
+    this.getCheckoutCart();
   }
 
   calculateSubtotal(): number {
@@ -48,6 +37,11 @@ proceedCheckout() {
   }else {
     this.router.navigateByUrl('/login');
   } 
+}
+
+async getCheckoutCart() {
+  this.checkOutCart = await this.service.getCheckOutCart().toPromise();
+  console.log("this.checkOutCart",this.checkOutCart)
 }
 
 }

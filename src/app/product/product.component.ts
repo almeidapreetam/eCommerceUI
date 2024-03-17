@@ -27,14 +27,13 @@ export class ProductComponent implements OnInit {
 
  async getProduct(id: number) {
   this.product = await this.service.getProduct(id).toPromise();
-  console.log(this.product)
+  
  }
 
 
  async addToCart(prod : Product | undefined , quantity : number) {
   if(prod) {
-    alert(quantity);
-    await this.dataService.addToCart(prod, quantity)
+  
   }
  }
 }

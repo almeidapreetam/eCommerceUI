@@ -23,7 +23,7 @@ export class HomeCategoryComponent implements OnInit {
 
    async fetchHomeCategory(){
     this.homeCategory = await  this.service.fetchHomeCategory().toPromise();
-    console.log("HomeCategory",this.homeCategory);
+    
   }
   goToCategory(categoryId: number) {
     this.productFilter.CategoryId = [categoryId];

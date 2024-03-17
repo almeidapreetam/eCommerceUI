@@ -13,38 +13,13 @@ import { Cart } from 'src/models/Cart';
 export class ServiceService {
 
   constructor(private http: HttpClient) {
-    this.userid = this.getUserId()
-   }
+    
+  }
   apiUrl = 'https://localhost:44301/api/';
   userid: number | null = null;
 
+  
 
-  getUserFromCookies(): any {
-    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split('=');
-        if (name === 'userData') {
-            return JSON.parse(decodeURIComponent(value));
-        }
-    }
-    return null; // Return null if userData cookie is not found
-  }
-   getUserId(): number | null {
-    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split('=');
-        if (name.trim() === 'userData') { 
-            try {
-                const data = JSON.parse(decodeURIComponent(value));
-                return data.userId; 
-            } catch (error) {
-                console.error('Error parsing userData cookie:', error);
-                return null; 
-            }
-        }
-    }
-    return null; 
-}
 
 
   checkIfUserloggedIn() : boolean {
@@ -85,22 +60,14 @@ export class ServiceService {
   filterProducts(model : ProductFilter): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'Products', model);
   }
-  addToCart(product: Product, quantity : number): Observable<any> {
-    
-    let cart: Cart = {
-      ProductId: product.productId,   
-      Quantity: quantity,
-      Price: product.price,
-      Discount: product.discount,
-      Userid: this.userid == null ?  0 : this.userid
-      };
-    return this.http.post<any>(`${this.apiUrl}AddToCart/Add`, cart);
+  addToCart(cart: Cart[]): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'AddToCart/Update', {cartDto : cart , userId : 1 });
   }
-  deleteFromCart(product: Product): Observable<any> {
-    let cart: Cart = {
-      ProductId: product.productId,  
-      Userid: this.userid == null ?  0 : this.userid
-      };
-    return this.http.post<any>(`${this.apiUrl}AddToCart/Delete`, cart);
+  getCheckOutCart(): Observable<any> {
+    var userId =1;
+    return this.http.get<any>(`${this.apiUrl}AddToCart/GetCart?userId=${userId}`);
   }
+
+
 }
+

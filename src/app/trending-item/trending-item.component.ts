@@ -21,7 +21,7 @@ export class TrendingItemComponent implements OnInit {
   async getTrendingItems()
   {
     this.trendingProducts = await this.service.getTrendingItems().toPromise()
-    console.log("trendingProducts",this.trendingProducts);
+    
   }
 
   gotoProduct(id? : number) {

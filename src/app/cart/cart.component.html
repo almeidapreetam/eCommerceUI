@@ -35,20 +35,20 @@
                         </thead>
                         <tbody>
                             <!-- product -->
-                            <ng-container *ngIf="!isUserLoggedIn">
-                                <tr *ngFor="let cart of tempCart">
+                            <ng-container *ngIf="checkOutCart && checkOutCart.cartCheckoutDetails">
+                                <tr *ngFor="let cart of checkOutCart.cartCheckoutDetails">
                                     <td>
                                         <div class="media">
                                             <div class="d-flex">
-                                                <img width="80" [src]="cart.product?.productImage" alt="" />
+                                                <img width="80" [src]="cart.productImage                                                " alt="" />
                                             </div>
                                             <div class="media-body">
-                                                <p>{{cart.product?.name}}</p>
+                                                <p>{{cart.productImage}}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <h5>&#8377;{{cart.product?.price}}</h5>
+                                        <h5>&#8377;{{cart.price}}</h5>
                                     </td>
                                     <td>
                                         <div class="product_count">
@@ -67,49 +67,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h5>{{ (cart.product && cart.product.price && cart.quantity ? cart.product.price * cart.quantity : 0) }}</h5>
+                                        <h5>{{cart.total}}</h5>
 
                                     </td>
                                 </tr>
-                            </ng-container>
-                            <ng-container *ngIf="isUserLoggedIn">
-                                <ng-container *ngIf="cart">
-                                    <tr *ngFor="let cart of cart.cartDetails">
-                                        <td>
-                                            <div class="media">
-                                                <div class="d-flex">
-                                                    <img width="80" [src]="cart.productImage" alt="" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <p>{{cart.productName}}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>&#8377;{{cart.finalPrice}}</h5>
-                                        </td>
-                                        <td>
-                                            <div class="product_count">
-                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                                    <option value="1" selected>1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>{{ cart.price }}</h5>
-
-                                        </td>
-                                    </tr>
-                                </ng-container>
                             </ng-container>
                             <!-- product -->
 
@@ -120,7 +81,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>{{ calculateSubtotal() }}</h5>
+                                    <h5>{{ checkOutCart.totalAmount }}</h5>
                                 </td>
                             </tr>
                             <tr class="out_button_area">

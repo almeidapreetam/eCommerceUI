@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable ,Subject,of } from 'rxjs';
 import { Product } from 'src/models/Product';
 import { ProductFilter } from 'src/models/ProductFilter';
 import { TempCart } from 'src/models/TempCart';
 import { ServiceService } from './service.service';
-import { ObjectService } from './ObjectService';
+import { Cart } from 'src/models/Cart';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private service: ServiceService, private objectService: ObjectService) {}
+  constructor(private service: ServiceService) {}
 
     private productFilter = new BehaviorSubject<ProductFilter>(new ProductFilter);
     private category = new BehaviorSubject<any>(null);
     private brand = new BehaviorSubject<any>(null);
-    private tempCart = new BehaviorSubject<TempCart[]>([]);
-    private Cart = new BehaviorSubject<any>(null);
+    
+
+    carts: Cart[] = [];
 
     productFilter$ = this.productFilter.asObservable();
     category$ = this.category.asObservable();
     brand$ = this.brand.asObservable();
-    tempCart$ = this.tempCart.asObservable();
-    Cart$ = this.Cart.asObservable();
+    
   
     setProductFilter(model: ProductFilter) {
       this.productFilter.next(model);
@@ -34,40 +35,55 @@ export class DataService {
     setBrand(model: any) {
       this.brand.next(model);
     }
-    setTempCart(model: TempCart) {
-      const currentCartValue = this.tempCart.getValue();
-      const updatedCartValue = [...currentCartValue, model];
-      this.tempCart.next(updatedCartValue);
+    saveUserSession(model: string): void {
+      sessionStorage.setItem('useraccess', model);
     }
-    setTempCartSession(model: TempCart) {
-      const currentCartValue = this.tempCart.getValue();
-      const mod = { key: 'value' };
-      const updatedCartValue = [...currentCartValue, model];
-      
-      this.objectService.setObject(updatedCartValue);
+    getUserSession(): any {
+      var userdata =  sessionStorage.getItem('useraccess');
+      return userdata ? JSON.parse(userdata) : null;
     }
-    getTempCartSession() {
-      const storedObject = this.objectService.getObject();
+    isUserLoggedIn(): boolean {
+      var userdata =  this.getUserSession()
+      return (userdata && userdata.userId) ? true : false
     }
-    setCart(model: any) {
-      this.Cart.next(model);
-    }
-    async addToCart(product : Product, quantity : number) 
-        {
-          if (this.service.checkIfUserloggedIn())
-          {
-            var data  = await this.service.addToCart( product , quantity).toPromise();
-            this.setCart(data);
+   
+    private removeFromSessionCart(product: Product, quantity: number = 0): void {
+      let currentCart: Cart[] = JSON.parse(sessionStorage.getItem('mycart') || '[]');
+      const existingCartItemIndex = currentCart.findIndex(item => item.ProductId === product.productId);
+    
+      if (existingCartItemIndex !== -1) {
+        if (quantity > 0) {
+          currentCart[existingCartItemIndex].Quantity -= quantity;
+          if (currentCart[existingCartItemIndex].Quantity <= 0) {
+            currentCart.splice(existingCartItemIndex, 1);
           }
-          this.setTempCartSession({product ,quantity: quantity})    
-            const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-            for (const cookie of cookies) {
-                const [name, value] = cookie.split('=');
-                if (name === 'userData') {
-                    return JSON.parse(decodeURIComponent(value));
-                }
-            }
-            const storedObject = this.objectService.getObject();
-            return null; // Return null if userData cookie is not found
+        } else {
+          currentCart.splice(existingCartItemIndex, 1);
         }
+        sessionStorage.setItem('mycart', JSON.stringify(currentCart));
+        if(this.isUserLoggedIn()) {
+          this.service.addToCart(currentCart)
+        }
+      }
+    }
+    
+    
+    public async addToCart(product: Product, quantity: number = 1) {
+      let currentCart: Cart[] = JSON.parse(sessionStorage.getItem('mycart') || '[]');
+      const existingCartItemIndex = currentCart.findIndex(item => item.ProductId === product.productId);
+
+      if (existingCartItemIndex !== -1) {
+          currentCart[existingCartItemIndex].Quantity += quantity;
+      } else {
+        const cart: Cart = new Cart();
+        cart.ProductId = product.productId;
+        cart.Quantity = quantity;
+        currentCart.push(cart);
+      }
+      sessionStorage.setItem('mycart', JSON.stringify(currentCart));
+      
+      if(this.isUserLoggedIn()) {
+        await this.service.addToCart(currentCart).toPromise();
+      }
+    }  
 }

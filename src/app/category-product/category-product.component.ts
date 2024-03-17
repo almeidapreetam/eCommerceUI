@@ -18,7 +18,7 @@ export class CategoryProductComponent implements OnInit {
   product: Product[] = [];
   data: string = "";
   filterGroup : any;
-  
+  userName : string = "";
 
   constructor(private service: ServiceService, private route: ActivatedRoute, private dataService: DataService, private router: Router) {}
 
@@ -33,9 +33,11 @@ export class CategoryProductComponent implements OnInit {
     });
     this.dataService.brand$.subscribe(data => {
       this.brand = data;
-    });
-
-    console.log("userer", this.service.getUserId())
+    });   
+    var userdata = this.dataService.getUserSession();
+    if(userdata) {
+      this.userName = userdata.firstName;
+    }
   }
 
 
@@ -44,7 +46,6 @@ export class CategoryProductComponent implements OnInit {
     .subscribe(
       response => {
         this.product = response;
-        console.log('pro',this.product)
       },
       error => {
         console.error('Error:', error);
@@ -85,7 +86,9 @@ export class CategoryProductComponent implements OnInit {
       console.error("Brand not initialized or is empty.");
     }
   }
-   async addToCart(prod : Product) {
-    this.dataService.addToCart(prod, 1)
-   }
+
+  async addToCart(product : Product) 
+  {
+    await this.dataService.addToCart(product);
+  }
 }

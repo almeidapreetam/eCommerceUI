@@ -18,7 +18,7 @@ export class ImageSliderComponent implements OnInit   {
 
   async getImageSlider() {
     this.imageslider = await  this.service.getImageSlider().toPromise();
-    console.log(this.imageslider);
+    
   }
 
 }

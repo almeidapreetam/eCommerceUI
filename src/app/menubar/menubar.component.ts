@@ -4,6 +4,7 @@ import { ServiceService } from 'src/services/service.service';
 import { MenuBar } from 'src/models/MenuBar'
 import { DataService } from 'src/services/dataService';
 import { ProductFilter } from 'src/models/ProductFilter';
+
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
@@ -11,28 +12,27 @@ import { ProductFilter } from 'src/models/ProductFilter';
 })
 export class MenubarComponent implements OnInit{
   categoryId: number | undefined;
-  constructor(private service: ServiceService,private router: Router, private dataService: DataService) {}
+  constructor(private service: ServiceService,private router: Router, private dataService: DataService) {
+
+  }
   productFilter = new ProductFilter(); 
   menubar : any
   txtSearch : string = '';
   cartCount : number = 0 ;
   isUserLogger : Boolean | undefined; 
+  
+  
+
   ngOnInit():void {
     this.getManuBarData();
     this.dataService.productFilter$.subscribe(data => {
       this.productFilter = data;
     });
-    this.isUserLogger = this.service.checkIfUserloggedIn();
-    this.dataService.tempCart$.subscribe(data => {
-      if(data) {
-        this.cartCount = data.length;
-      }
-    });
+  
   }
-
   async getManuBarData() {
     this.menubar = await this.service.getMenuBar().toPromise();
-    console.log(this.menubar)
+    
   }
   goToCategory(categoryId: number) {
     this.productFilter.CategoryId = [categoryId];

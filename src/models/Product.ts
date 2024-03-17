@@ -2,7 +2,7 @@ import { ProductImage } from "./ProductImage";
 
 export class Product 
 {
-  productId: number | undefined;
+  productId: number | undefined ;
   name: string| undefined;
   brandId: number| undefined;
   price: number = 0;
